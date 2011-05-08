@@ -35,3 +35,8 @@ class CaesarCipherTestCase(unittest.TestCase):
         cipher = CaesarCipher("livelongandprosper")
         cipher.encrypt()
         assert_equals(cipher.decrypt(), "livelongandprosper")
+
+    def test_should_get_zope_when_decoded_zope_word_with_a_7_key_value(self):
+        cipher = CaesarCipher("zope")
+        cipher.encrypt()
+        assert_equals(cipher.decrypt(), "zope")
