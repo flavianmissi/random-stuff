@@ -31,10 +31,7 @@ class CaesarCipher(object):
     def decrypt(self):
         self.decrypted = []
         for i in self.encrypted:
-            index = self.letters.index(i)
-            if index < len(self.letters):
-                self.decrypted.append(self.letters[index - self.key])
-            else:
-                self.decrypted.append(self.letters[(index  - self.key) % len(self.letters)]) # why works with - or % ?
+            index = self.letters.index(i) - self.key
+            self.decrypted.append(self.letters[index])
         self.decrypted = ''.join(self.decrypted)
         return self.decrypted
