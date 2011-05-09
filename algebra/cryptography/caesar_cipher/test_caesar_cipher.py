@@ -3,40 +3,33 @@ from caesar_cipher import CaesarCipher
 from nose.tools import assert_equals
 
 class CaesarCipherTestCase(unittest.TestCase):
-    def test_should_get_2_17_8_15_19_14_6_17_0_5_8_0_code_to_criptografia_word(self):
-        cipher = CaesarCipher("criptografia")
-        assert_equals(cipher.to_code(), [2,17,8,15,19,14,6,17,0,5,8,0])
+    def setUp(self):
+        self.cipher = CaesarCipher()
 
     def test_should_get_fulswrjudild_to_criptografia_word(self):
-        cipher = CaesarCipher("criptografia")
-        assert_equals(cipher.encrypt(), "fulswrjudild")
+        assert_equals(self.cipher.encrypt("criptografia"), "fulswrjudild")
 
     def test_should_get_criptografia_when_decoded_criptografia_word(self):
-        cipher = CaesarCipher("criptografia")
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "criptografia")
+        encrypted = self.cipher.encrypt("criptografia")
+        assert_equals(self.cipher.decrypt(encrypted), "criptografia")
 
     def test_should_get_zope_when_decoded_zope_word(self):
-        cipher = CaesarCipher("zope")
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "zope")
+        encrypted = self.cipher.encrypt("zope")
+        assert_equals(self.cipher.decrypt(encrypted), "zope")
 
     def test_should_get_warm_when_decoded_warm_word(self):
-        cipher = CaesarCipher("warm")
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "warm")
+        encrypted = self.cipher.encrypt("warm")
+        assert_equals(self.cipher.decrypt(encrypted), "warm")
 
     def test_should_get_xmen_when_decoded_xmen_word(self):
-        cipher = CaesarCipher("xmen")
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "xmen")
+        encrypted = self.cipher.encrypt("xmen")
+        assert_equals(self.cipher.decrypt(encrypted), "xmen")
 
     def test_should_get_livelongandprosper_when_decoded_livelongandprosper_word(self):
-        cipher = CaesarCipher("livelongandprosper")
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "livelongandprosper")
+        encrypted = self.cipher.encrypt("livelongandprosper")
+        assert_equals(self.cipher.decrypt(encrypted), "livelongandprosper")
 
     def test_should_get_zope_when_decoded_zope_word_with_a_7_key_value(self):
-        cipher = CaesarCipher("zope", 7)
-        cipher.encrypt()
-        assert_equals(cipher.decrypt(), "zope")
+        cipher = CaesarCipher(7)
+        encrypted = cipher.encrypt("zope")
+        assert_equals(cipher.decrypt(encrypted), "zope")

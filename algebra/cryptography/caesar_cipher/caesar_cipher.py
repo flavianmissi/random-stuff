@@ -1,37 +1,27 @@
 import string
+from code_helper import CodeHelper
 
 class CaesarCipher(object):
-    def __init__(self, msg, key=3):
-        self.letters = list(string.ascii_lowercase) # a to z
+    def __init__(self, key=3):
         self.key = key
-        self.msg = msg
+        self.letters = list(string.ascii_lowercase) # a to z
+        self.helper = CodeHelper()
 
-    def to_code(self):
-        self.code = []
-        for c in self.msg:
-            self.code.append(self.letters.index(c))
-        return self.code
-
-    def to_str(self):
-        for i in range(len(self.encrypted)):
-            self.encrypted[i] = self.letters[self.encrypted[i]]
-        self.encrypted = ''.join(self.encrypted)
-
-    def encrypt(self):
-        self.to_code()
-        self.encrypted = []
-        for i in self.code:
+    def encrypt(self, msg):
+        code = self.helper.to_code(msg)
+        encrypted = []
+        for i in code:
             index = i + self.key
             if index >= len(self.letters):
                 index = index % len(self.letters)
-            self.encrypted.append(index)
-        self.to_str()
-        return self.encrypted
+            encrypted.append(index)
+        encrypted = self.helper.to_str(encrypted)
+        return encrypted
 
-    def decrypt(self):
-        self.decrypted = []
-        for i in self.encrypted:
+    def decrypt(self, msg):
+        decrypted = []
+        for i in msg:
             index = self.letters.index(i) - self.key
-            self.decrypted.append(self.letters[index])
-        self.decrypted = ''.join(self.decrypted)
-        return self.decrypted
+            decrypted.append(index)
+        decrypted = self.helper.to_str(decrypted)
+        return decrypted
